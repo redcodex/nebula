@@ -1,0 +1,138 @@
+<html data-ng-app="net.traeumt.Angie">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="app.css" />
+
+    <title>Angie</title>
+</head>
+
+<body role="document">
+
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">config.traeumt.net</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Startseite</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">E-Mail <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Postfächer</a></li>
+                        <li><a href="#">Adressen</a></li>
+                        <li><a href="#">Spamfilter</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Externe Webseite</li>
+                        <li><a href="#">Webmail (Roundcube)</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Datenbanken <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">mySQL</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Externe Webseite</li>
+                        <li><a href="#">phpMyAdmin</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Domain</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Verzeichnisse <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">FTP-Benutzer</a></li>
+                        <li><a href="#">Passwortschutz</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Rechnungen</a></li>
+                <li><a href="#invoice">Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container theme-showcase" role="main">
+
+    <div class="page-header">
+        <h1>Überschrift</h1>
+    </div>
+
+    <div class="row">
+        <input type="text" data-ng-model="username"></div>
+        <input type="password" data-ng-model="password"></div>
+        <button data-ng-click="login(username,password)">Login</button>
+        <input type="text" data-ng-model="search"></div>
+    </div>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Date of Birth</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody data-crud-list="users">
+            <tr data-ng-animate="'search'" data-ng-repeat="user in crudList.users | filter:search" data-crud-object="{{user.id}}">
+                <td>1</td>
+                <td><viewedit object="crud.{{user.id}}" name="firstname"></viewedit></td>
+                <td><viewedit object="crud.{{user.id}}" name="lastname"></viewedit></td>
+                <td><viewedit object="crud.{{user.id}}" name="address"></viewedit></td>
+                <td><viewedit object="crud.{{user.id}}" name="city"></viewedit></td>
+                <td><viewedit object="crud.{{user.id}}" name="dateOfBirth"></viewedit></td>
+                <td>
+                    <div data-ng-hide="crud.myObject.config.edit"><button type="button" class="btn btn-primary" data-ng-click="crud.myObject.startEdit()">Edit</button> <button type="button" class="btn btn-danger"  data-ng-click="crud.myObject.delete()">Delete</button></div>
+                    <div data-ng-show="crud.myObject.config.edit"><button type="button" class="btn btn-success" data-ng-click="crud.myObject.saveEdit()">Speichern</button> <button type="button" class="btn btn-default"  data-ng-click="crud.myObject.abortEdit()">Abbrechen</button></div>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td></td>
+                <td></td>
+                <td><button type="button" class="btn btn-primary">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td></td>
+                <td></td>
+                <td><button type="button" class="btn btn-primary">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</html>
