@@ -43,7 +43,7 @@ module.run(['sessionService', function(sessionService) {
 }]);
 
 module.controller('loginController', ['$scope', 'sessionService', function($scope, sessionService) {
-    $scope.login = function(username, password) {
+    this.login = function(username, password) {
         sessionService.login(username, password);
     }
 }]);
