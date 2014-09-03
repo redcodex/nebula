@@ -49,18 +49,16 @@ module.controller('loginController', ['$scope', 'sessionService', function($scop
 }]);
 
 module.service('sessionService', ['$http', function($http) {
-    this.loginError = function(error) {
-        console.log(error);
-    };
-
      this.login = function(username, password) {
         $http.post('/couchdb/_session', {name: username, password: password}).then(function(result) {
-            if ( result.ok == true ) {
+            if ( result.data.ok == true ) {
                 console.login("Login successful!")
             } else {
-                this.loginError("Username or password wrong")
+                console.log("Username or password wrong");
             }
-        }, this.loginError);
+        }, function(error) {
+            console.log(error);
+        });
     }
 }]);
 
