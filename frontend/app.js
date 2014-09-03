@@ -49,7 +49,11 @@ module.controller('loginController', ['$scope', 'sessionService', function($scop
 }]);
 
 module.service('sessionService', ['$http', function($http) {
-    this.login = function(username, password) {
+    this.loginError = function(error) {
+        console.log(error);
+    };
+
+     this.login = function(username, password) {
         $http.post('/couchdb/_session', {name: username, password: password}).then(function(result) {
             if ( result.ok == true ) {
                 console.login("Login successful!")
@@ -58,10 +62,6 @@ module.service('sessionService', ['$http', function($http) {
             }
         }, this.loginError);
     }
-
-    this.loginError = function(error) {
-        console.log(error);
-    };
 }]);
 
 module.service('schemaService', function() {
