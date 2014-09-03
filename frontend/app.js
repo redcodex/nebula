@@ -52,7 +52,7 @@ module.service('sessionService', ['$http', function($http) {
      this.login = function(username, password) {
         $http.post('/couchdb/_session', {name: username, password: password}).then(function(result) {
             if ( result.data.ok == true ) {
-                console.login("Login successful!")
+                console.log("Login successful!")
             } else {
                 console.log("Username or password wrong");
             }
