@@ -40,7 +40,6 @@ var module = angular.module( "net.traeumt.Angie", [] );
 //});
 
 module.run(['sessionService', function(sessionService) {
-    sessionService.login();
 }]);
 
 module.service('sessionService', ['$http', function($http) {
