@@ -42,6 +42,12 @@ var module = angular.module( "net.traeumt.Angie", [] );
 module.run(['sessionService', function(sessionService) {
 }]);
 
+module.controller('loginController', ['sessionService', function(sessionService) {
+    $scope.login = function(username, password) {
+        sessionService.login(username, password);
+    }
+}]);
+
 module.service('sessionService', ['$http', function($http) {
     this.login = function(username, password) {
         $http.post('/couchdb/_session', {name: username, password: password}).then(function(result) {
