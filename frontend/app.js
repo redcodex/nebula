@@ -42,7 +42,7 @@ var module = angular.module( "net.traeumt.Angie", [] );
 module.run(['sessionService', function(sessionService) {
 }]);
 
-module.controller('loginController', ['sessionService', function($scope, sessionService) {
+module.controller('loginController', ['$scope', 'sessionService', function($scope, sessionService) {
     $scope.login = function(username, password) {
         sessionService.login(username, password);
     }
