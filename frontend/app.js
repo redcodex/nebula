@@ -42,13 +42,15 @@ var module = angular.module( "net.traeumt.Angie", [] );
 module.run(['sessionService', function(sessionService) {
 }]);
 
-module.controller('loginController', ['$scope', 'sessionService', function($scope, sessionService) {
+module.controller('loginController', ['$scope', 'couchdbSessionService', function($scope, sessionService) {
     this.login = function(username, password) {
         sessionService.login(username, password);
     }
 }]);
 
-module.service('sessionService', ['$http', function($http) {
+module.service('couchdbSessionService', ['$http', function($http) {
+    // service constructor function
+
      this.login = function(username, password) {
         $http.post('/couchdb/_session', {name: username, password: password}).then(function(result) {
             if ( result.data.ok == true ) {
@@ -62,10 +64,11 @@ module.service('sessionService', ['$http', function($http) {
     }
 }]);
 
-module.service('schemaService', function() {
+module.service('couchdbDocumentService', ['$http', function($http) {
     // service constructor function
 
-});
+    
+}]);
 
 module.directive('crudList', function() {
     return {
