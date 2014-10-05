@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by dirk on 14.09.14.
  */
-public class ObjectSchema extends ReflectionDBObject {
+public class ObjectSchema {
     private String name;
     private HashMap<String,FieldSchema> fields;
 

@@ -32,16 +32,14 @@ public class MongoDBService {
         return this.db.getCollection(collection);
     }
 
-    public <T extends DBObject> List<T> getCollectionDocuments(String collectionName, Class<T> clazz) {
-        List<T> documents = new LinkedList<>();
+    public List<DBObject> getCollectionDocuments(String collectionName) {
+        List<DBObject> documents = new LinkedList<>();
         DBCollection collection = this.getCollection(collectionName);
-
-        collection.setObjectClass(clazz);
 
         DBCursor cursor = collection.find();
         try {
             while(cursor.hasNext()) {
-                documents.add((T)cursor.next());
+                documents.add((DBObject)cursor.next());
             }
         } finally {
             cursor.close();
